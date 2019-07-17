@@ -59,4 +59,8 @@ public abstract class MessageSupplier {
             }
         };
     }
+
+   public void appendRequestBodyText(char c) {
+        create(Character.toString(c));
+   }
 }

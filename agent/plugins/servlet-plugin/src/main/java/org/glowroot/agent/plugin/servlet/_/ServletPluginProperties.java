@@ -40,6 +40,8 @@ public class ServletPluginProperties {
     private static List<Pattern> captureRequestParameters = Collections.emptyList();
     private static List<Pattern> maskRequestParameters = Collections.emptyList();
     private static List<Pattern> captureRequestHeaders = Collections.emptyList();
+    private static int captureRequestBodyNumChars;
+    private static int captureRequestBodyNumBytes;
 
     private static boolean someRequestHostAndPortDetail;
     private static boolean captureRequestRemoteAddress;
@@ -82,6 +84,14 @@ public class ServletPluginProperties {
 
     public static List<Pattern> captureRequestHeaders() {
         return captureRequestHeaders;
+    }
+
+    public static int captureRequestBodyNumChars() {
+        return captureRequestBodyNumChars;
+    }
+
+    public static int captureRequestBodyNumBytes() {
+        return captureRequestBodyNumBytes;
     }
 
     public static boolean captureSomeRequestHostAndPortDetail() {
@@ -219,6 +229,8 @@ public class ServletPluginProperties {
             captureRequestParameters = buildPatternList("captureRequestParameters");
             maskRequestParameters = buildPatternList("maskRequestParameters");
             captureRequestHeaders = buildPatternList("captureRequestHeaders");
+            captureRequestBodyNumChars = getIntProperty("captureRequestBodyNumChars");
+            captureRequestBodyNumBytes = getIntProperty("captureRequestBodyNumBytes");
             captureRequestRemoteAddress =
                     configService.getBooleanProperty("captureRequestRemoteAddr").value();
             captureRequestRemoteHostname =
@@ -267,6 +279,11 @@ public class ServletPluginProperties {
                 patterns.add(buildRegexPattern(value.trim().toLowerCase(Locale.ENGLISH)));
             }
             return ImmutableList.copyOf(patterns);
+        }
+
+        private static int getIntProperty(String propertyName) {
+            Double value = configService.getDoubleProperty(propertyName).value();
+            return value == null ? 0 : value.intValue();
         }
 
         private static List<SessionAttributePath> buildSessionAttributePaths(
