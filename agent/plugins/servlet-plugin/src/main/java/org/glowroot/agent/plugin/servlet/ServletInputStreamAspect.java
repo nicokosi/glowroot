@@ -21,6 +21,8 @@ import org.glowroot.agent.plugin.api.weaving.BindReturn;
 import org.glowroot.agent.plugin.api.weaving.IsEnabled;
 import org.glowroot.agent.plugin.api.weaving.OnReturn;
 import org.glowroot.agent.plugin.api.weaving.Pointcut;
+import org.glowroot.agent.plugin.servlet._.ServletMessageSupplier;
+import org.glowroot.agent.plugin.servlet._.ServletPluginProperties;
 
 public class ServletInputStreamAspect {
 

@@ -218,7 +218,7 @@ public class ServletMessageSupplier extends MessageSupplier implements ServletRe
         cbuf.position(startingPosition + len);
     }
 
-    void appendRequestBodyText(char[] cbuf, int off, int len) {
+    public void appendRequestBodyText(char[] cbuf, int off, int len) {
         if (requestBodyText == null) {
             requestBodyText = new StringBuilder(1024);
         }
@@ -229,7 +229,7 @@ public class ServletMessageSupplier extends MessageSupplier implements ServletRe
         }
     }
 
-    void appendRequestBodyText(String line) {
+    public void appendRequestBodyText(String line) {
         if (requestBodyText == null) {
             requestBodyText = new StringBuilder(1024);
         }
@@ -245,7 +245,7 @@ public class ServletMessageSupplier extends MessageSupplier implements ServletRe
         }
     }
 
-    void appendRequestBodyText(char c) {
+    public void appendRequestBodyText(char c) {
         if (requestBodyText == null) {
             requestBodyText = new StringBuilder(1024);
         }
@@ -254,7 +254,7 @@ public class ServletMessageSupplier extends MessageSupplier implements ServletRe
         }
     }
 
-    void appendRequestBodyBytes(byte[] bytes, int off, int len) {
+    public void appendRequestBodyBytes(byte[] bytes, int off, int len) {
         if (requestBodyBytes == null) {
             requestBodyBytes = new ByteArrayOutputStream(1024);
         }
